@@ -53,7 +53,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                     bodyBuilder.TextBody = "Kayıt İşlemini Gerçekleştirmek İçin Onay Kodunuz : " + code;
                     mimeMessage.Body = bodyBuilder.ToMessageBody();
                     mimeMessage.Subject = "Easy Cash Onay Kodu";
-
+                    
                     SmtpClient client = new SmtpClient();
                     client.Connect("smtp-mail.outlook.com", 587, false);
                     client.Authenticate("mertcansaglam35@hotmail.com", "19931993m");
