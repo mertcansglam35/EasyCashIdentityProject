@@ -31,7 +31,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                 Random random = new Random();
                 int code;
                 code = random.Next(100000, 1000000);
-				AppUser appUser = new AppUser()
+                AppUser appUser = new AppUser()
                 {
                     UserName = appUserRegisterDto.Username,
                     Name = appUserRegisterDto.Name,
@@ -39,7 +39,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                     Email = appUserRegisterDto.Email,
                     ConfirmCode = code
                 };
-                
+
                 var result = await _userManager.CreateAsync(appUser, appUserRegisterDto.Password);
 
                 if (result.Succeeded)
@@ -53,15 +53,15 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                     bodyBuilder.TextBody = "Kayıt İşlemini Gerçekleştirmek İçin Onay Kodunuz : " + code;
                     mimeMessage.Body = bodyBuilder.ToMessageBody();
                     mimeMessage.Subject = "Easy Cash Onay Kodu";
-                    
+
                     SmtpClient client = new SmtpClient();
                     client.Connect("smtp-mail.outlook.com", 587, false);
                     client.Authenticate("mertcansaglam35@hotmail.com", "19931993m");
                     client.Send(mimeMessage);
                     client.Disconnect(true);
-                    
+
                     return RedirectToAction("Index", "ConfirmMail");
-                } 
+                }
                 else
                 {
                     foreach (var item in result.Errors)
