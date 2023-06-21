@@ -59,7 +59,7 @@ namespace EasyCashIdentityProject.PresentationLayer.Controllers
                     client.Authenticate("mertcansaglam35@hotmail.com", "19931993m");
                     client.Send(mimeMessage);
                     client.Disconnect(true);
-
+                    
                     return RedirectToAction("Index", "ConfirmMail");
                 } 
                 else
